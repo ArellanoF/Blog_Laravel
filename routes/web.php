@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CategoryController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +22,50 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', [HomeController::class, 'index'])->name('home.index');
+Route::get('/all', [HomeController::class, 'all'])->name('home.all');
+
+// Route::get('/articles', [ArticleController::class, 'index'])->name('article.index');
+// Route::get('/articles/create', [ArticleController::class, 'create'])->name('article.create');
+// Route::post('/articles', [ArticleController::class, 'store'])->name('article.store');
+
+// Route::get('/articles/{article}/edit', [ArticleController::class, 'edit'])->name('article.edit');
+// Route::put('/articles/{article}', [ArticleController::class, 'update'])->name('article.update');
+// Route::delete('/articles/{article}', [ArticleController::class, 'destroy'])->name('article.destroy');
+//Categorias
+// Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
+// Route::get('/categories/create', [CategoryController::class, 'create'])->name('category.create');
+// Route::post('/categories', [CategoryController::class, 'store'])->name('category.store');
+
+//Profile
+Route::resource('profiles', ProfileController::class)
+->only('edit', 'update')
+->names('profiles');
+
+//Comentarios
+Route::resource('comments', CommentController::class)
+->only('index', 'destroy')
+->names('comments');
+
+//Artículos
+Route::resource('articles',ArticleController::class)
+->except('show')
+->names('articles');
+
+//Categorias
+Route::resource('categories',CategoryController::class)
+->except('show')
+->names('categories');
+
+
+//Ver articulos
+Route::get('articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
+
+//Ver articulos por categorias
+Route::get('category/{category}', [CategoryController::class, 'detail'])->name('categories.detail');
+
+//Guardar comentarios
+Route::get('/comment', [CommentController::class, 'store'])->name('comments.store');
+
+
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
