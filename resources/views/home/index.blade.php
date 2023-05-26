@@ -1,3 +1,11 @@
+@extends('layouts.base');
+
+@section('styles')
+<link rel="stylesheet" href="{{asset('css/manage-_post/categories/css/article_category.css')}}" class="css">
+@endsection
+@section('title', 'Blog Categories')
+@section('content')
+@include('layouts.navbar')
 <div class="slogan">
     <div class="column1">
         <h2>BLOG</h2>
@@ -25,3 +33,4 @@
 <div class="links-paginate">
     
 </div>
+@endsection

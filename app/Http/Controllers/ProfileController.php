@@ -47,41 +47,37 @@ class ProfileController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(ProfileRequest $request, Profile $profile)
-    {
-        $user = Auth::user();
-        
-        if($request->hasFile('photo')){
-            //Eliminar foto anterior
-            File::delete(public_path('storage/' . $profile->photo));
+{
+    $user = Auth::user();
 
-            //asignar nueva foto
-            $photo = $request['photo']->store('profiles');
-        }else{
-            $photo = $user->profile->photo;
-        }
+    if ($request->hasFile('photo')) {
+        // Delete previous photo
+        File::delete(public_path('storage/' . $profile->photo));
 
-        //ASIGNR NOMBRE Y CORREO
-        
-        $user->full_name = $request->full_name;
-        $user->email = $request->email;
-        //Asignar campos adicionales 
-        $user->profile->profession = $request->profession;
-        $user->profile->about = $request->about;
-        $user->profile->photo = $photo;
-        $user->profile->twitter = $request->twitter;
-        $user->profile->linkedin = $request->linkedin;
-        $user->profile->facebook = $request->facebook; 
-
-        //guardar campos de usuario
-        $user->save();
-
-        //asignar photo
-        $user->profile->photo = $photo;
-
-        //guardar campos de profile
-        $user->profile->save();
-
-        return redirect()->route('profiles.edit', $user->profile->id);
+        // Assign new photo
+        $photo = $request['photo']->store('profiles');
+    } else {
+        $photo = $user->profile->photo;
     }
+
+    // Assign name and email
+    $user->full_name = $request->full_name;
+    $user->email = $request->email;
+
+    // Assign additional fields
+    $user->profile->profession = $request->profession;
+    $user->profile->about = $request->about;
+    $user->profile->photo = $photo;
+    $user->profile->twitter = $request->twitter;
+    $user->profile->linkedin = $request->linkedin;
+    $user->profile->facebook = $request->facebook;
+
+    // Save user and profile fields
+    $user->save();
+    $user->profile->save();
+
+    return redirect()->route('profiles.edit', $user->profile->id);
+}
+
 
 }
