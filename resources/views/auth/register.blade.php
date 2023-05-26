@@ -2,8 +2,10 @@
 @section('styles')
 <link rel="stylesheet" href="{{asset('css/login/css/login.css')}}" class="css">
 @endsection
+
 @section('title', 'Crear cuenta')
 @section('content')
+
 <form method="POST" class="form" action="{{route('register')}}" novalidate>
     @csrf
     <h2>Crear cuenta</h2>
@@ -12,22 +14,26 @@
             <input type="text" name="full_name" placeholder="Nombre completo"
                 value="{{old('full_name')}}" 
                 autofocus>
-            @error('full_name')
+
+                @error('full_name')
             <span class="text-danger">
                 <span>{{$message}}</span>
             </span>
             @enderror
+
         </div>
 
         <div class="input-content">
             <input type="text" name="email" placeholder="Correo eléctronico"
-                value="{{old('email')}}" 
+                value="{{old('email')}}"
                 autofocus>
-            @error('email')
+
+                @error('email')
             <span class="text-danger">
                 <span>{{$message}}</span>
             </span>
             @enderror
+
         </div>
 
         <div class="input-content">
