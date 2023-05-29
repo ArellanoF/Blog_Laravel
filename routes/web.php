@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -65,7 +66,7 @@ Route::get('articles/{article}', [ArticleController::class, 'show'])->name('arti
 Route::get('category/{category}', [CategoryController::class, 'detail'])->name('categories.detail');
 
 //Guardar comentarios
-Route::get('/comment', [CommentController::class, 'store'])->name('comments.store');
+Route::post('/comment', [CommentController::class, 'store'])->name('comments.store');
 
 
 Auth::routes();
