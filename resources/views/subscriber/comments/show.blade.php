@@ -1,7 +1,7 @@
 <div class="comments-content">
     @foreach($comments as $comment)
     <div class="comments-body">
-        <span class="comment-head"> &nbsp; &nbsp; @for($i = 0; $i < $comment->value; $i++)
+        <span class="comment-head"> &nbsp; &nbsp;{{$comment->user->full_name}} @for($i = 0; $i < $comment->value; $i++)
                 ⭐
                 @endfor</span>
         <p class="comment-description line">{{$comment->description}}</p>

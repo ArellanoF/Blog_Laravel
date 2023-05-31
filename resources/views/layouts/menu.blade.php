@@ -5,7 +5,7 @@
 
         <div class="logo"  style="width: 100px;">
             <!--Logo-->
-            <a href="#"><img style="width:100%" src="{{asset('img/blog.png')}}" alt="Logo"></a>
+            <a href="{{route('home.index')}}"><img style="width:100%" src="{{asset('img/blog.png')}}" alt="Logo"></a>
         </div>
         @guest
         <ul class="d-flex">
@@ -27,7 +27,7 @@
                 <li><a class="dropdown-item"
                         href="#">Perfil</a></li>
                 
-                <li><a class="dropdown-item" href="#">Ir al admin</a></li>
+                <li><a class="dropdown-item" href="{{route('admin.index')}}">Ir al admin</a></li>
                 
                 <li>
                     <form id="logout-form" action="{{route('logout')}}" method="POST" style="display: none;">

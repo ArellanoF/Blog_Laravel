@@ -119,6 +119,8 @@ class CategoryController extends Controller
     //filtrar articulos por categorias
     public function detail(Category $category){
         
+        $this->authorize('published', $category);
+        
         $articles = Article::where([
             ['category_id' , $category->id],
             ['status' , 1]
@@ -135,3 +137,4 @@ class CategoryController extends Controller
         return view('subscriber.categories.detail', compact('articles', 'category', 'navbar'));
     }
 }
+ 

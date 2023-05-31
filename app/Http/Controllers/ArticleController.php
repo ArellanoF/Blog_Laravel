@@ -23,7 +23,7 @@ class ArticleController extends Controller
         ->orderBy('id', 'desc')
         ->simplePaginate(10);
 
-        return view('admin.article.index', compact('articles'));
+        return view('admin.articles.index', compact('articles'));
     }
 
     /**
@@ -89,6 +89,8 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
+
+        $this->authorize('view', $article);
         //Obtener categorias publicas
        $categories = Category::select(['id', 'name'])
        ->where('status', 1)
@@ -108,6 +110,7 @@ class ArticleController extends Controller
      */
     public function update(ArticleRequest $request, Article $article)
     {
+        $this->authorize('update', $article);
         //si el usuario sube una nueva imagen
         if($request->hasFile('image')){
             //Eliminar la imagen anterior
@@ -140,6 +143,7 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
+        $this->authorize('delete', $article);
         // Guardar la ruta de la imagen antes de eliminar el artículo
         $imagePath = public_path('storage/' . $article->image);
         if ($article->delete()) {
