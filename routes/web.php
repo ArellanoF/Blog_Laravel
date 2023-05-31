@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -22,6 +24,26 @@ use App\Models\Category;
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/all', [HomeController::class, 'all'])->name('home.all');
 
+//Admin
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+
+Route::namespace('App\Http\Controllers')->prefix('admin')->group(function(){
+   
+Route::resource('articles', 'ArticleController')
+->except('show')
+->names('articles');
+
+//Categorias
+Route::resource('categories','CategoryController')
+->except('show')
+->names('categories');
+
+//Comentarios
+Route::resource('comments', 'CommentController')
+->only('index', 'destroy')
+->names('comments');
+    
+});
 // Route::get('/articles', [ArticleController::class, 'index'])->name('article.index');
 // Route::get('/articles/create', [ArticleController::class, 'create'])->name('article.create');
 // Route::post('/articles', [ArticleController::class, 'store'])->name('article.store');
@@ -34,16 +56,6 @@ Route::get('/all', [HomeController::class, 'all'])->name('home.all');
 // Route::get('/categories/create', [CategoryController::class, 'create'])->name('category.create');
 // Route::post('/categories', [CategoryController::class, 'store'])->name('category.store');
 
-//Profile
-Route::resource('profiles', ProfileController::class)
-->only('edit', 'update')
-->names('profiles');
-
-//Comentarios
-Route::resource('comments', CommentController::class)
-->only('index', 'destroy')
-->names('comments');
-
 //Artículos
 Route::resource('articles',ArticleController::class)
 ->except('show')
@@ -54,6 +66,15 @@ Route::resource('categories',CategoryController::class)
 ->except('show')
 ->names('categories');
 
+//Comentarios
+Route::resource('comments', CommentController::class)
+->only('index', 'destroy')
+->names('comments');
+
+//Profile
+Route::resource('profiles', ProfileController::class)
+->only('edit', 'update')
+->names('profiles');
 
 //Ver articulos
 Route::get('articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
@@ -62,7 +83,7 @@ Route::get('articles/{article}', [ArticleController::class, 'show'])->name('arti
 Route::get('category/{category}', [CategoryController::class, 'detail'])->name('categories.detail');
 
 //Guardar comentarios
-Route::get('/comment', [CommentController::class, 'store'])->name('comments.store');
+Route::post('/comment', [CommentController::class, 'store'])->name('comments.store');
 
 
 Auth::routes();

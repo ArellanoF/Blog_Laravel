@@ -9,9 +9,7 @@
     <h2>Crear cuenta</h2>
     <div class="content-login">
         <div class="input-content">
-            <input type="text" name="full_name" placeholder="Nombre completo"
-                value="{{old('full_name')}}" 
-                autofocus>
+        <input id="name" type="text" placeholder="Nombre completo" class="form-control @error('full_name') is-invalid @enderror" name="name" value="{{ old('full_name') }}" required autocomplete="name" autofocus>
             @error('full_name')
             <span class="text-danger">
                 <span>{{$message}}</span>
@@ -50,4 +48,3 @@
     <p>¿Ya tienes una cuenta? <a href="{{route('login')}}" class="link">Iniciar sesión</a></p>
 </form>
 @endsection
-
