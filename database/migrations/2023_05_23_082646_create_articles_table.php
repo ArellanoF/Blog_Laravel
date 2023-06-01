@@ -35,7 +35,7 @@ class CreateArticlesTable extends Migration
             $table->foreign('category_id')
                 ->references('id')
                 ->on('categories')
-                ->onDelete('cascade');
+                ->onDelete('set null');
 
 
             $table->timestamps();

@@ -112,7 +112,7 @@ class CategoryController extends Controller
            }
        }
 
-       return redirect()->action([ArticleController::class, 'index'], compact ('category'))
+       return redirect()->action([CategoryController::class, 'index'], compact ('category'))
        ->with('success-delete', 'Categoria eliminada con éxito');
     }
 
