@@ -41,7 +41,7 @@
                     <td>{{ Str::limit($article->title, 25, '...') }}</td>
                     <td>{{ $article->category->name }}</td>
                     <td>
-                        <input type="checkbox" name="status" id="status" class="form-check-input ml-4" {{ $article->status ? 'checked=checked"' : '' }} disabled>
+                        <input type="checkbox" name="status" id="status" class="form-check-input ml-4" {{ $article->status ? 'checked=checked' : '' }} disabled>
                     </td>
 
                     <td width="2px"><a href="{{route('articles.show', $article->slug)}}" class="btn btn-primary btn-sm mb-2">Mostrar</a></td>
@@ -84,31 +84,3 @@
     </div>
 </div>
 @stop
-
-<!-- <script>
-    function confirmDelete() {
-        Swal.fire({
-            title: '¿Estás seguro?',
-            text: 'Esta acción no se puede deshacer',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Sí, eliminar',
-            cancelButtonText: 'Cancelar',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                document.getElementById("delete-form").submit();
-            }
-        });
-    }
-</script> -->
-<!-- @section('js')
-<script>
-    function confirmDelete() {
-        if (confirm("¿Estás seguro de que deseas eliminar este artículo?")) {
-            document.getElementById("delete-form").submit();
-        } else {
-            return false;
-        }
-    }
-</script>
-@endsection -->

@@ -10,6 +10,7 @@ class CategoryPolicy
 {
     use HandlesAuthorization;
 
+
        public function published(?User $user, Category $category){
         if($category->status == 1){
             return true;

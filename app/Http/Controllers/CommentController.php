@@ -20,11 +20,10 @@ class CommentController extends Controller
     {
          //mostrar comentarios en el admin
          $comments = DB::table('comments')
-         ->join('articles', 'comments.articles_id', '=', 'articles.id')
+         ->join('articles', 'comments.article_id', '=', 'articles.id')
          ->join('users', 'comments.user_id', '=', 'users.id')
-         ->select('comments.value', 'comments.description', 
+         ->select('comments.id','comments.value', 'comments.description', 
          'articles.title', 'users.full_name')
-         ->where('articles.user_id', '=', Auth::user()->id)
          ->orderBy('articles.id', 'desc')
          ->get();
  
@@ -72,7 +71,7 @@ class CommentController extends Controller
     {
         $comment->delete();
 
-        return redirect()->action([CommentController::class, 'index', compact('comment')])
+        return redirect()->action([CommentController::class, 'index'], compact('comment'))
         ->with('success-delete', 'Comentario eliminado correctamente');
         
     }
