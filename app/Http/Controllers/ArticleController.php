@@ -90,7 +90,7 @@ class ArticleController extends Controller
     public function edit(Article $article)
     {
 
-        $this->authorize('view', $article);
+        $this->authorize('view', $article); 
         //Obtener categorias publicas
        $categories = Category::select(['id', 'name'])
        ->where('status', 1)
