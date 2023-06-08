@@ -318,6 +318,11 @@ return [
         ],
         ['header' => 'PANEL'],
         [
+            'text' => 'Ir al blog',
+            'route' => 'home.index',
+            'icon' => 'fas fa-home'
+        ],
+        [
             'text' => 'Artículos',
             'url'  => 'articles',
             'icon' => 'fas fa-poll',

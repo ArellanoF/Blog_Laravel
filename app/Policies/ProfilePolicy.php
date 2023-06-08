@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Article;
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ArticlePolicy
+class ProfilePolicy
 {
     use HandlesAuthorization;
 
@@ -25,14 +25,12 @@ class ArticlePolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Article  $article
+     * @param  \App\Models\Profile  $profile
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Article $article)
+    public function view(User $user, Profile $profile)
     {
-        //REvisar si el ususario es el mismo que creo el artículo
-        return $user->id === $article->user_id;
-
+        return $user->id === $profile->user_id;
     }
 
     /**
@@ -50,36 +48,34 @@ class ArticlePolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Article  $article
+     * @param  \App\Models\Profile  $profile
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Article $article)
+    public function update(User $user, Profile $profile)
     {
-         //REvisar si el ususario es el mismo que creo el artículo
-         return $user->id == $article->user_id;
+        return $user->id === $profile->user_id;
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Article  $article
+     * @param  \App\Models\Profile  $profile
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Article $article)
+    public function delete(User $user, Profile $profile)
     {
-        //REvisar si el ususario es el mismo que creo el artículo
-        return $user->id == $article->user_id;
+        //
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Article  $article
+     * @param  \App\Models\Profile  $profile
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Article $article)
+    public function restore(User $user, Profile $profile)
     {
         //
     }
@@ -88,19 +84,11 @@ class ArticlePolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Article  $article
+     * @param  \App\Models\Profile  $profile
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Article $article)
+    public function forceDelete(User $user, Profile $profile)
     {
         //
-    }
-
-    public function published(?User $user, Article $article){
-        if($article->status == 1){
-            return true;
-        }else{
-            return false;
-        }
     }
 }

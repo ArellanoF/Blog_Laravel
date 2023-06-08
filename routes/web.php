@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\CommentController;
-use App\Http\Controllers\AdminController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Models\Category;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,11 +74,13 @@ Route::resource('comments', CommentController::class)
 
 //Profile
 Route::resource('profiles', ProfileController::class)
-->only('edit', 'update')
+->except('show')
 ->names('profiles');
 
 //Ver articulos
 Route::get('articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
+
+Route::get('profiles/{profile}', [ProfileController::class, 'show'])->name('profiles.show');
 
 //Ver articulos por categorias
 Route::get('category/{category}', [CategoryController::class, 'detail'])->name('categories.detail');
