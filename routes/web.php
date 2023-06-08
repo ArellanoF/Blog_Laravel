@@ -43,6 +43,12 @@ Route::resource('categories','CategoryController')
 Route::resource('comments', 'CommentController')
 ->only('index', 'destroy')
 ->names('comments');
+
+//Usuarios
+Route::resource('users', 'UserController')
+->except('create', 'store', 'show')
+->names('users');
+
     
 });
 // Route::get('/articles', [ArticleController::class, 'index'])->name('article.index');

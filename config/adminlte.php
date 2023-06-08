@@ -323,20 +323,26 @@ return [
             'icon' => 'fas fa-home'
         ],
         [
+            'text' => 'Usuarios',
+            'route'  => 'users.index',
+            'icon' => 'fas fa-user',
+            'active' => ['admin/users*']
+        ],
+        [
             'text' => 'Artículos',
-            'url'  => 'articles',
+            'route'  => 'articles.index',
             'icon' => 'fas fa-poll',
             'active' => ['admin/articles*']
         ],
         [
             'text' => 'Categorias',
-            'url'  => 'categories',
+            'route'  => 'categories.index',
             'icon' => 'fas fa-poll',
             'active' => ['admin/categories*']
         ],
         [
             'text' => 'Comentarios',
-            'url'  => 'comments',
+            'route'  => 'comments.index',
             'icon' => 'fas fa-poll',
             'active' => ['admin/comments*']
         ],
