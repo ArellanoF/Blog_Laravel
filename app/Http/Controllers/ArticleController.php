@@ -11,6 +11,15 @@ use App\Http\Requests\ArticleRequest;
 
 class ArticleController extends Controller
 {
+    public function __construct()
+    {
+        //proteger las rutas
+        $this->middleware('can:articles.index')->only('index');
+        $this->middleware('can:articles.create')->only('create', 'store');
+        $this->middleware('can:articles.edit')->only('edit', 'update');
+        $this->middleware('can:articles.destroy')->only('destroy');
+
+    }
     /**
      * Display a listing of the resource.
      *

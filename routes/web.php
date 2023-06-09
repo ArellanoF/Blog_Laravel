@@ -26,7 +26,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/all', [HomeController::class, 'all'])->name('home.all');
 
 //Admin
-Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+Route::get('/admin', [AdminController::class, 'index'])
+->middleware('can:admin.index')
+->name('admin.index');
 
 Route::namespace('App\Http\Controllers')->prefix('admin')->group(function(){
    
@@ -43,6 +45,12 @@ Route::resource('categories','CategoryController')
 Route::resource('comments', 'CommentController')
 ->only('index', 'destroy')
 ->names('comments');
+
+//Usuarios
+Route::resource('users', 'UserController')
+->except('create', 'store', 'show')
+->names('users');
+
     
 });
 // Route::get('/articles', [ArticleController::class, 'index'])->name('article.index');

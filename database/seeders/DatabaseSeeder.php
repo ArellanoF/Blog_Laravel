@@ -6,6 +6,7 @@ use App\Models\Article;
 use App\Models\Comment;
 use App\Models\Category;
 use Illuminate\Database\Seeder;
+use Database\Seeders\RoleSeeder;
 use Database\Seeders\UserSeeder;
 use Illuminate\Support\Facades\Storage;
 
@@ -21,6 +22,7 @@ class DatabaseSeeder extends Seeder
         Storage::makeDirectory('articles');
         Storage::makeDirectory('categories');
         //llamar al seeder
+        $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
 
         //Factories

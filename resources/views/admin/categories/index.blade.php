@@ -22,10 +22,11 @@
 @endif
 <div class="card">
 
+    @can('categories.create')
     <div class="card-header">
         <a class="btn btn-primary" href="{{route('categories.create')}}">Crear categoría</a>
     </div>
-
+    @endcan
     <div class="card-body">
         <table class="table table-striped">
             <thead>
@@ -48,8 +49,11 @@
                     </td>
 
                     <td width="20px"><a href="{{route('categories.detail', $category->slug)}}" class="btn btn-primary btn-sm mb-2">Mostrar</a></td>
+                    @can('categories.edit')
                     <td width="20px"><a href="{{route('categories.edit', $category->slug)}}" class="btn btn-primary btn-sm mb-2">Editar</a></td>
+                    @endcan
 
+                    @can('categories.destroy')
                     <td width="5px">
                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmDeleteModal-{{ $category->id }}">Eliminar</button>
                         <div class="modal fade" id="confirmDeleteModal-{{ $category->id }}" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel-{{ $category->id }}" aria-hidden="true">
@@ -76,7 +80,7 @@
                             </div>
                         </div>
                     </td>
-
+                    @endcan
 
                 </tr>
                 @endforeach

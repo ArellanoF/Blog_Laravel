@@ -11,6 +11,14 @@ use App\Http\Requests\CommentRequest;
 
 class CommentController extends Controller
 {
+
+    public function __construct()
+    {
+        //proteger las rutas
+        $this->middleware('can:comments.index')->only('index');
+        $this->middleware('can:comments.destroy')->only('destroy');
+
+    }
     /**
      * Display a listing of the resource.
      *
