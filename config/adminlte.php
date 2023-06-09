@@ -320,31 +320,35 @@ return [
         [
             'text' => 'Ir al blog',
             'route' => 'home.index',
-            'icon' => 'fas fa-home'
+            'icon' => 'fas fa-home',
+            'can' => 'admin.index'
         ],
         [
             'text' => 'Usuarios',
             'route'  => 'users.index',
             'icon' => 'fas fa-user',
-            'active' => ['admin/users*']
+            'active' => ['admin/users*'],
+            'can' => 'users.index'
         ],
         [
             'text' => 'Artículos',
             'route'  => 'articles.index',
-            'icon' => 'fas fa-poll',
-            'active' => ['admin/articles*']
+            'icon' => 'fas fa-book',
+            'active' => ['admin/articles*'],
+            'can' => 'articles.index'
         ],
         [
             'text' => 'Categorias',
             'route'  => 'categories.index',
             'icon' => 'fas fa-poll',
-            'active' => ['admin/categories*']
+            'active' => ['admin/categories*'],
         ],
         [
             'text' => 'Comentarios',
             'route'  => 'comments.index',
             'icon' => 'fas fa-poll',
-            'active' => ['admin/comments*']
+            'active' => ['admin/comments*'],
+            'can' => 'comments.index'
         ],
     ],
 

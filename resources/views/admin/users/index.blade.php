@@ -39,9 +39,7 @@
                         @endforeach
                     </td>
                     <td width="10px">
-                        @if($user->hasRole('Administrator'))
                         <a href="{{route('users.edit', $user)}}" class="btn btn-primary btn-sm mb-2">Editar</a>
-                        @endif
                     </td>
                     <td width="10px">
                         <form action="{{ route('users.destroy', $user) }}" method="POST" id="deleteForm">

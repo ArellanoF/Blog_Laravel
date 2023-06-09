@@ -11,7 +11,12 @@ use App\Http\Requests\ProfileRequest;
 
 class ProfileController extends Controller
 {
+    public function __construct()
+    {
+        //proteger las rutas
+        $this->middleware('auth');
 
+    }
     /**
      * Display the specified resource.
      *

@@ -28,7 +28,7 @@ class RoleSeeder extends Seeder
         Permission::create([
             'name' => 'categories.index',
             'description' => 'Ver Categorias'
-        ])->syncRoles([$admin]);
+        ])->syncRoles([$admin, $author]);
 
 
         Permission::create([
@@ -47,7 +47,7 @@ class RoleSeeder extends Seeder
             'name' => 'categories.destroy',
             'description' => 'Eliminar Categorias'
         ])->assignRole($admin);
-        
+
         //Articulos
         Permission::create([
             'name' => 'articles.index',
